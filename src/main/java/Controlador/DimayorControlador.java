@@ -38,26 +38,30 @@ public class DimayorControlador {
                     vista.mostrarMensaje(liga.listarNombres());
                     int i1;
                     int i2;
-                    do{
+                    do {
                         i1 = vista.seleccionarEquipo("Seleccione índice equipo 1:");
                         i2 = vista.seleccionarEquipo("Seleccione índice equipo 2:");
-                        
+
                         if (i1 == i2) {
                             vista.mostrarMensaje("No puedes elegir el mismo equipo");
                         }
                     } while (i1 == i2);
-            
+
                     int goles1 = vista.pedirGoles("Ingrese goles del equipo 1:");
                     int goles2 = vista.pedirGoles("Ingrese goles del equipo 2:");
 
-                    liga.jugarPartido(i1-1, i2-1, goles1, goles2);
+                    liga.jugarPartido(i1 - 1, i2 - 1, goles1, goles2);
 
                     vista.mostrarMensaje("Partido registrado correctamente");
                     break;
 
                 case 3:
-                    int mayor = liga.mayorPuntaje();
-                    vista.mostrarMensaje("Mayor puntaje: " + mayor);
+                    if (!liga.hayPartidos()) {
+                        vista.mostrarMensaje("No se han registrado partidos aún");
+                    } else {
+                        int mayor = liga.mayorPuntaje();
+                        vista.mostrarMensaje("Mayor puntaje: " + mayor);
+                    }
                     break;
 
                 case 4:
@@ -66,7 +70,11 @@ public class DimayorControlador {
                     break;
 
                 case 5:
-                    vista.mostrarMensaje(liga.mejoresEquipos());
+                    if (!liga.hayPartidos()) {
+                        vista.mostrarMensaje("No se han registrado partidos aún");
+                    } else {
+                        vista.mostrarMensaje(liga.mejoresEquipos());
+                    }
                     break;
 
                 case 6:
@@ -80,4 +88,3 @@ public class DimayorControlador {
         } while (opcion != 6);
     }
 }
-

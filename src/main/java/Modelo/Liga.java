@@ -12,6 +12,7 @@ public class Liga {
 
     private EquipoFutbol[] equipos;
     private int cantidad;
+    private int partidosJugados = 0;
 
     public Liga() {
         equipos = new EquipoFutbol[20];
@@ -58,6 +59,12 @@ public class Liga {
             equipo1.empatar();
             equipo2.empatar();
         }
+        
+        partidosJugados++;
+    }
+    
+    public boolean hayPartidos() {
+        return partidosJugados > 0;
     }
 
     public String mostrarEquipos() {
